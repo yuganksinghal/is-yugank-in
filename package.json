@@ -1,0 +1,14 @@
+{
+  "name": "isyugankin",
+  "version": "1.0.0",
+  "description": "Webservice to check if Yugank is in.",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Yugank Singhal",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
