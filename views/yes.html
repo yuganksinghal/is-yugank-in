@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <style>
+  body, html{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  #video-background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -99;
+  }
+  #yes{
+    font-family: 'Muli', sans-serif;
+    background-color: rgba(0,0,0, 0.8);
+    padding: 5px 5px 5px 5px;
+    margin: 2px 2px 2px 2px;
+    position: absolute;
+    top: 15%;
+    right: 3%;
+    color: #DEDEDE;
+    font-size: 3em;
+  }
+
+  @media only screen and (max-device-width:768px) and (min-device-width:320px) {
+    iframe{
+      display: none;
+    }
+    body{
+      background-color: #21FF3F;
+    }
+    #yes{
+      background-color: transparent;
+      height: 433px;
+      width: 688px;
+      top:50%;
+      left: 50%;
+      margin: -217px 0 0 -344px;
+      text-align: center;
+      font-size: 7em;
+    }
+  }
+
+  </style>
+</head>
+<body>
+  <div id="video-background">
+    <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/K0ga3Et5Sw4?rel=0&controls=0&showinfo=0&autoplay=1&loop=1&modestbranding=0&iv_load_policy=3" frameborder="0"></iframe>
+  </div>
+  <h1 id="yes"> Yugank is in right now</h1>
+</body>
