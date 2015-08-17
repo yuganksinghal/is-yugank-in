@@ -4,9 +4,9 @@ var isYugankIn = "¯\\_(ツ)_/¯ No report of him yet";
 
 app.get('/', function (req, res) {
   if(isYugankIn === true){
-    res.sendfile('./views/yes');
+    res.sendFile('./views/yes.html');
   } else if(isYugankIn === false){
-    res.sendfile('./views/no');
+    res.sendFile('./views/no.html');
   } else {
     res.send(isYugankIn);
   }
