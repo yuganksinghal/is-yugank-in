@@ -3,7 +3,13 @@ var app = express();
 var isYugankIn = "¯\\_(ツ)_/¯ No report of him yet";
 
 app.get('/', function (req, res) {
+  if(isYugankIn === true){
+    res.sendfile(./views/yes);
+  } else if(isYugankIn === false){
+    res.sendfile(./views/no);
+  } else {
     res.send(isYugankIn);
+  }
 });
 
 app.get('/yes', function(req,res){
