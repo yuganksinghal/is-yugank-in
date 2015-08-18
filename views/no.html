@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <head>
   <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
   <style>
   body, html{
     width: 100%;
     height: 100%;
     overflow: hidden;
   }
-  #video-background{
+
+  iframe{
+    overflow:hidden;
+  }
+
+  a{
+    color: white;
+  }
+
+  form{
+    height: 95%;
+  }
+
+  #background{
+    background-color: #FF215B;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -15,7 +30,17 @@
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -99;
+    z-index: -2;
+  }
+
+  #video-background{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
   }
   #no{
     font-family: 'Muli', sans-serif;
@@ -23,14 +48,10 @@
     padding: 5px 5px 5px 5px;
     margin: 2px 2px 2px 2px;
     position: absolute;
-    top: 15%;
     right: 3%;
+    bottom: 75%;
     color: #DEDEDE;
     font-size: 3em;
-  }
-
-  a{
-    color: white;
   }
 
   #credit{
@@ -39,12 +60,13 @@
     color: white;
     right: 1px;
     bottom: 1px;
+    font-size: 20%;
     position: absolute;
   }
 
   #uparrow{
     padding: 5px 5px 5px 5px;
-    margin: 0 0 0 -64px;
+    margin: 0 0 0 -32px;
     display: block;
     position:absolute;
     left:50%;
@@ -54,6 +76,22 @@
 
   #uparrow:hover{
     cursor: pointer;
+  }
+
+  #messagebox{
+    width: 97%;
+    height: 75%;
+    outline-style: solid;
+    outline-width: medium;
+  }
+
+  .message{
+    display: block;
+    font-family: 'Muli', sans-serif;
+    background-color: transparent;
+    color: #DEDEDE;
+    font-size: 300%;
+    margin: 5px auto 10px auto;
   }
 
   @media only screen and (max-device-width:768px) and (min-device-width:320px) {
@@ -73,17 +111,44 @@
       text-align: center;
       font-size: 7em;
     }
+    .message{
+      display: none;
+    }
   }
-
   </style>
 </head>
+
 <body>
-  <div id="video-background">
-    <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/EsC4zTr77oI?rel=0&controls=0&showinfo=0&autoplay=1&loop=1&modestbranding=0&iv_load_policy=3" frameborder="0"></iframe>
+  <div id="video-background" class='slide'>
+    <iframe class='slide' width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/EsC4zTr77oI?rel=0&controls=0&showinfo=0&autoplay=1&loop=1&modestbranding=0&iv_load_policy=3" frameborder="0"></iframe>
   </div>
-  <h1 id='no'> Yugank is not in right now</h1>
-  <div id='uparrow'>
+  <h1 id='no' class = 'slide'> Yugank is not in right now</h1>
+  <div id='uparrow' class = 'slide'>
     <img src='../icons/up.png'></img>
   </div>
+  <div id="background">
+    <h1 class='message'>
+      Leave a message after the colon:
+    </h1>
+    <form>
+      <textarea id="messagebox" cols="40" rows="5" class="message" type="text" name="message"></textarea> <br>
+      <input id="submit" class="message" type="submit" value="Submit">
+    </form>
+  </div>
   <div id='credit'>Icons made by <a href="http://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a>        is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a></div>
+
+  <script>
+  $("#uparrow").click(function() {
+    $.when(
+      $(".slide").animate({
+        bottom : 2 * $(window).height() - $(this).position().top
+      }, 1500)
+    ).then( function(){
+      console.log("hello");
+      $('#background').css({
+        "z-index": 1
+      });
+    });
+  });
+  </script>
 </body>
