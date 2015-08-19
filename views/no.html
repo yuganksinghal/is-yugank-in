@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <head>
   <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
-  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.min.js"></script>
   <style>
   body, html{
     width: 100%;
@@ -70,19 +71,36 @@
     display: block;
     position:absolute;
     left:50%;
-    bottom: 1px;
+    bottom: 0px;
     background-color:rgba(0,0,0, 0.8);
   }
 
-  #uparrow:hover{
+  #downarrow{
+    display: block;
+    position:absolute;
+    right: 1%;
+    top: 5px;
+    bottom: 0px;
+  }
+
+  .arrow:hover{
     cursor: pointer;
   }
 
   #messagebox{
     width: 97%;
     height: 75%;
-    outline-style: solid;
-    outline-width: medium;
+    border-style: solid;
+    border-width: medium;
+  }
+
+  #submit{
+    border-style: solid;
+    border-width: medium;
+  }
+
+  #messagemessage{
+    padding-left: 10px;
   }
 
   .message{
@@ -123,11 +141,14 @@
     <iframe class='slide' width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/EsC4zTr77oI?rel=0&controls=0&showinfo=0&autoplay=1&loop=1&modestbranding=0&iv_load_policy=3" frameborder="0"></iframe>
   </div>
   <h1 id='no' class = 'slide'> Yugank is not in right now</h1>
-  <div id='uparrow' class = 'slide'>
+  <div id='uparrow' class = 'slide arrow'>
     <img src='../icons/up.png'></img>
   </div>
   <div id="background">
-    <h1 class='message'>
+    <div id='downarrow' class = 'arrow'>
+      <img src='../icons/down.png'></img>
+    </div>
+    <h1 class='message' id="messagemessage">
       Leave a message after the colon:
     </h1>
     <form>
@@ -139,15 +160,27 @@
 
   <script>
   $("#uparrow").click(function() {
+    var str = "+=" + $(window).height();
+    console.log(str);
     $.when(
       $(".slide").animate({
-        bottom : 2 * $(window).height() - $(this).position().top
-      }, 1500)
+        bottom : str
+      }, 2000, 'easeOutBounce')
     ).then( function(){
       $('#background').css({
         "z-index": 1
       });
     });
+  });
+  $("#downarrow").click(function() {
+      console.log("hi");
+      var str = "-=" + $(window).height();
+      $('#background').css({
+        "z-index": -99
+      });
+      $(".slide").animate({
+        bottom : str
+      }, 2000, 'easeOutBounce');
   });
   </script>
 </body>
